@@ -144,9 +144,7 @@ class TokenManager extends GP247AdminComponent
             'snippets' => $this->snippets($endpoint),
             'settingsUrl' => $this->canOpenSettings() ? gp247_route_admin('admin_mcp.settings') : null,
             // WHY administrators only: removing an extension folder is a site-owner task.
-            'legacyPluginFolder' => $user->isAdministrator()
-                && McpServiceProvider::legacyPluginFolderPresent()
-                && !McpServiceProvider::legacyPluginServes(),
+            'legacyPluginCleanup' => $user->isAdministrator() ? McpServiceProvider::legacyPluginCleanup() : null,
             'stats' => [
                 'active' => $tokens->filter(fn ($t) => !$t->expires_at || $t->expires_at->isFuture())->count(),
                 'expiring' => $tokens->filter(fn ($t) => $t->expires_at && $t->expires_at->isFuture() && $t->expires_at->lte($soon))->count(),

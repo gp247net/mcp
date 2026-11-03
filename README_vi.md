@@ -110,18 +110,18 @@ Chủ cửa hàng bật/tắt **từng công cụ** cho cả site trong màn **C
    php artisan gp247:ext-uninstall --type=plugin --key=McpServer --purge
    ```
 
-   Lệnh này chỉ xoá file vì plugin đã hết đăng ký — token **không** bị thu hồi. Màn MCP nay ở **Hệ thống → MCP Server**
+   Lệnh này chỉ xoá file vì plugin đã hết đăng ký — token **không** bị thu hồi. Màn MCP nay ở **Cấu hình hệ thống → MCP Server**
    (`<admin>/mcp/tokens`), không còn trong danh sách Extension.
-3. Vào **Hệ thống → MCP Server**, bấm nút **Cấu hình MCP Server** ở góc trên bên phải, bật **Bật endpoint MCP** rồi bấm **Lưu**.
+3. Vào **Cấu hình hệ thống → MCP Server**, bấm nút **Cấu hình MCP Server** ở góc trên bên phải, bật **Bật endpoint MCP** rồi bấm **Lưu**.
    Endpoint là "cổng" để agent gọi vào; mặc định cổng này **tắt**.
 4. Phân quyền cho nhân viên (bỏ qua nếu chỉ quản trị viên cao nhất dùng): trong màn quản lý **Vai trò (Roles)**, gán quyền
-   **"MCP — use (own tokens)"** cho vai trò được dùng AI agent. Quyền **"MCP — configure"** dành cho người được chỉnh cấu hình.
+   **"MCP server — use (own tokens)"** cho vai trò được dùng AI agent. Quyền **"MCP server — configure"** dành cho người được chỉnh cấu hình.
 
 ## Tạo token
 
 **Token** là "chìa khoá" riêng cho từng agent, thay cho mật khẩu của bạn. Mỗi máy hoặc mỗi agent nên có một token riêng.
 
-1. Vào **Hệ thống → MCP Server** (màn **Token MCP**). Hàng thẻ trên cùng cho biết endpoint đang bật hay tắt, số token còn hiệu lực,
+1. Vào **Cấu hình hệ thống → MCP Server** (màn **MCP Server**). Hàng thẻ trên cùng cho biết endpoint đang bật hay tắt, số token còn hiệu lực,
    số token sắp hết hạn và số công cụ đang bật.
 2. Ở khung **Tạo token**, nhập **Tên** dễ nhận ra, ví dụ `Laptop – Claude Code`.
 3. Chọn **Mức truy cập**:
@@ -135,7 +135,7 @@ Chủ cửa hàng bật/tắt **từng công cụ** cho cả site trong màn **C
 
 ## Kết nối agent
 
-Địa chỉ endpoint có dạng `https://<tên-miền-của-bạn>/api/core/mcp`. Ở cuối màn **Token MCP**, phần **Kết nối agent** hiện sẵn địa
+Địa chỉ endpoint có dạng `https://<tên-miền-của-bạn>/api/core/mcp`. Ở cuối màn **MCP Server**, phần **Kết nối agent** hiện sẵn địa
 chỉ đúng của site và đoạn cấu hình cho từng agent, kèm nút **Sao chép**. Đoạn cấu hình **không chứa token**: bạn đặt token vào biến
 môi trường `GP247_MCP_TOKEN` (hoặc để VS Code hỏi khi chạy).
 
@@ -197,7 +197,7 @@ Thêm **custom connector** với địa chỉ endpoint. Nếu tài khoản của
 `Authorization: Bearer <token>`. ChatGPT và connector không có mục header cần OAuth — bản này chưa hỗ trợ.
 
 ## Kiểm tra kết nối
-1. Ở cuối màn **Token MCP**, bấm **Kiểm tra kết nối**.
+1. Ở cuối màn **MCP Server**, bấm **Kiểm tra kết nối**.
 2. Đọc kết quả:
    - **Màu xanh** — endpoint truy cập được và header `Authorization` tới được máy chủ. Có thể dùng agent.
    - **Màu đỏ** — máy chủ web đang làm mất header `Authorization`, agent sẽ bị từ chối (lỗi 401). Xem Câu 3 ở mục Hỏi & Đáp.
@@ -208,7 +208,7 @@ Thêm **custom connector** với địa chỉ endpoint. Nếu tài khoản của
 Một lời gọi công cụ chỉ chạy khi **cả năm lớp** cho phép:
 
 1. **Site** — endpoint đang bật và công cụ đó đang bật.
-2. **Người dùng** — tài khoản còn hoạt động và có quyền "MCP — use".
+2. **Người dùng** — tài khoản còn hoạt động và có quyền "MCP server — use".
 3. **Token** — còn hạn; đúng mức *Chỉ đọc* / *Đọc + ghi*; nằm trong danh sách công cụ được phép (nếu có giới hạn).
 4. **Phân quyền quản trị** — chủ token có quyền ở màn quản trị tương ứng (đọc cần quyền xem, ghi cần quyền sửa).
 5. **Dữ liệu** — chỉ trong phạm vi cửa hàng của tài khoản.
@@ -217,7 +217,7 @@ Một lời gọi công cụ chỉ chạy khi **cả năm lớp** cho phép:
 flowchart TD
     R["📨 Agent gọi một công cụ"] --> L1{"1️⃣ Site<br/>endpoint & công cụ đang bật?"}
     L1 -- "không" --> X1["⛔ Từ chối / không thấy công cụ"]
-    L1 -- "có" --> L2{"2️⃣ Người dùng<br/>tài khoản hoạt động, có quyền MCP — use?"}
+    L1 -- "có" --> L2{"2️⃣ Người dùng<br/>tài khoản hoạt động, có quyền MCP server — use?"}
     L2 -- "không" --> X2["⛔ Từ chối (401 / 403)"]
     L2 -- "có" --> L3{"3️⃣ Token<br/>còn hạn, đúng mức, công cụ được phép?"}
     L3 -- "không" --> X3["⛔ Từ chối"]
@@ -346,7 +346,7 @@ Nếu vẫn lỗi, nhờ nhà cung cấp hosting bật `CGIPassAuth On`.
 
 **Câu 4: Agent báo 403?**
 
-→ Tài khoản thiếu quyền "MCP — use", token không phải token MCP (token API khác không dùng được), hoặc site nhiều cửa hàng mà
+→ Tài khoản thiếu quyền "MCP server — use", token không phải token MCP (token API khác không dùng được), hoặc site nhiều cửa hàng mà
 tài khoản không phải quản trị viên cao nhất (xem mục Site nhiều cửa hàng).
 
 **Câu 5: Agent không thấy một công cụ mà tôi cần?**

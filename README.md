@@ -111,18 +111,18 @@ The shop owner switches **each tool** on or off for the whole site in **MCP Serv
    ```
 
    This only deletes files because the plugin is no longer registered — tokens are **not** revoked. The MCP screens are now under
-   **System → MCP Server** (`<admin>/mcp/tokens`), no longer in the Extensions list.
-3. Go to **System → MCP Server**, click the **MCP Server settings** button in the top-right corner, turn on
+   **System config → MCP Server** (`<admin>/mcp/tokens`), no longer in the Extensions list.
+3. Go to **System config → MCP Server**, click the **MCP Server settings** button in the top-right corner, turn on
    **Turn on the MCP endpoint** and click **Save**.
    The endpoint is the "door" agents call; it is **closed** by default.
 4. Give access to staff (skip this if only the top administrator will use it): in the **Roles** management screen, give the
-   **"MCP — use (own tokens)"** permission to the roles allowed to use AI agents. **"MCP — configure"** is for people who edit the settings.
+   **"MCP server — use (own tokens)"** permission to the roles allowed to use AI agents. **"MCP server — configure"** is for people who edit the settings.
 
 ## Create a token
 
 A **token** is a personal "key" for one agent, used instead of your password. Each computer or agent should have its own token.
 
-1. Go to **System → MCP Server** (the **MCP tokens** screen). The row of cards at the top shows whether the endpoint is on, how many
+1. Go to **System config → MCP Server** (the **MCP Server** screen). The row of cards at the top shows whether the endpoint is on, how many
    tokens are active, how many are about to expire and how many tools are switched on.
 2. In the **Create a token** panel, enter a recognisable **Name**, for example `Laptop – Claude Code`.
 3. Choose the **Access level**:
@@ -136,7 +136,7 @@ A **token** is a personal "key" for one agent, used instead of your password. Ea
 
 ## Connect your agent
 
-The endpoint address looks like `https://<your-domain>/api/core/mcp`. At the bottom of the **MCP tokens** screen, the
+The endpoint address looks like `https://<your-domain>/api/core/mcp`. At the bottom of the **MCP Server** screen, the
 **Connect your agent** section shows your site's exact address and a configuration snippet for each agent, each with a **Copy**
 button. The snippets **do not contain the token**: you put the token in the `GP247_MCP_TOKEN` environment variable (or let VS Code
 ask for it).
@@ -199,7 +199,7 @@ Add a **custom connector** with the endpoint address. If your account offers **R
 `Authorization: Bearer <token>`. ChatGPT and connectors without a header option need OAuth — not supported in this version.
 
 ## Check the connection
-1. At the bottom of the **MCP tokens** screen, click **Check connection**.
+1. At the bottom of the **MCP Server** screen, click **Check connection**.
 2. Read the result:
    - **Green** — the endpoint is reachable and the `Authorization` header reaches the server. You can use your agent.
    - **Red** — the web server drops the `Authorization` header, so agents will be refused (error 401). See Q3 in the Q&A.
@@ -211,7 +211,7 @@ Add a **custom connector** with the endpoint address. If your account offers **R
 A tool call runs only when **all five layers** allow it:
 
 1. **Site** — the endpoint and that tool are switched on.
-2. **User** — the account is active and has the "MCP — use" permission.
+2. **User** — the account is active and has the "MCP server — use" permission.
 3. **Token** — not expired; the right level (*Read only* / *Read + write*); in the list of allowed tools (if limited).
 4. **Admin permissions** — the token owner may use the matching admin screen (view for reads, edit for writes).
 5. **Data** — only within the account's store scope.
@@ -220,7 +220,7 @@ A tool call runs only when **all five layers** allow it:
 flowchart TD
     R["📨 The agent calls a tool"] --> L1{"1️⃣ Site<br/>endpoint & tool switched on?"}
     L1 -- "no" --> X1["⛔ Refused / tool not visible"]
-    L1 -- "yes" --> L2{"2️⃣ User<br/>account active, has MCP — use?"}
+    L1 -- "yes" --> L2{"2️⃣ User<br/>account active, has MCP server — use?"}
     L2 -- "no" --> X2["⛔ Refused (401 / 403)"]
     L2 -- "yes" --> L3{"3️⃣ Token<br/>not expired, right level, tool allowed?"}
     L3 -- "no" --> X3["⛔ Refused"]
@@ -354,7 +354,7 @@ If it still fails, ask your hosting provider to enable `CGIPassAuth On`.
 
 **Q4: My agent gets 403?**
 
-→ The account lacks the "MCP — use" permission, the token is not an MCP token (other API tokens do not work), or the site has several
+→ The account lacks the "MCP server — use" permission, the token is not an MCP token (other API tokens do not work), or the site has several
 stores and the account is not the top administrator (see Multi-store sites).
 
 **Q5: My agent does not see a tool I need?**

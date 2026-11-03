@@ -18,6 +18,7 @@ return [
     'token_created_hint' => 'Token sẽ không hiện lại. Lưu vào cấu hình agent hoặc biến môi trường.',
     'token_copied' => 'Tôi đã sao chép',
     'legacy_plugin_folder' => 'MCP nay là một phần của S-Cart (gp247/mcp); token và cấu hình đã được chuyển từ plugin McpServer cũ. Xoá thư mục plugin còn sót bằng lệnh: php artisan gp247:ext-uninstall --type=plugin --key=McpServer --purge',
+    'legacy_plugin_installed' => 'Plugin McpServer cũ đang được cài lại bên cạnh MCP có sẵn. Đừng gỡ plugin — thao tác gỡ sẽ thu hồi mọi token MCP. Hãy tắt plugin bằng lệnh: php artisan gp247:ext-disable --type=plugin --key=McpServer, rồi xoá thư mục app/GP247/Plugins/McpServer bằng trình quản lý file.',
     'password_revoke_note' => 'Đổi mật khẩu sẽ thu hồi mọi token MCP của tài khoản. Sau đó hãy tạo token mới và cập nhật vào agent.',
 
     'list_title' => 'Danh sách token',

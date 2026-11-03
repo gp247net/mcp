@@ -18,6 +18,7 @@ return [
     'token_created_hint' => 'It will not be shown again. Store it in your agent configuration or an environment variable.',
     'token_copied' => 'I have copied it',
     'legacy_plugin_folder' => 'MCP is now part of S-Cart (gp247/mcp) and your tokens and settings were moved from the old McpServer plugin. Remove the leftover plugin folder with: php artisan gp247:ext-uninstall --type=plugin --key=McpServer --purge',
+    'legacy_plugin_installed' => 'The old McpServer plugin is installed again next to the built-in MCP. Do not uninstall it — uninstalling revokes every MCP token. Disable it with: php artisan gp247:ext-disable --type=plugin --key=McpServer, then delete the folder app/GP247/Plugins/McpServer with your file manager.',
     'password_revoke_note' => 'Changing your password revokes every MCP token of your account. Create a new token and update your agent afterwards.',
 
     'list_title' => 'Tokens',

@@ -42,9 +42,13 @@
         @endif
     </div>
 
-    @if ($legacyPluginFolder)
+    @if ($legacyPluginCleanup === 'purge')
         <x-gp247::alert type="info" data-testid="plugin-mcp-server-legacy-plugin">
             {{ gp247_language_render($l.'legacy_plugin_folder') }}
+        </x-gp247::alert>
+    @elseif ($legacyPluginCleanup === 'disable')
+        <x-gp247::alert type="warning" data-testid="plugin-mcp-server-legacy-plugin-installed">
+            {{ gp247_language_render($l.'legacy_plugin_installed') }}
         </x-gp247::alert>
     @endif
 

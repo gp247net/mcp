@@ -18,6 +18,7 @@ return [
     'token_created_hint' => '再表示されません。エージェントの設定または環境変数に保存してください。',
     'token_copied' => 'コピーしました',
     'legacy_plugin_folder' => 'MCP は S-Cart の一部 (gp247/mcp) になり、トークンと設定は旧 McpServer プラグインから移行されました。残っているプラグインのフォルダは次のコマンドで削除してください: php artisan gp247:ext-uninstall --type=plugin --key=McpServer --purge',
+    'legacy_plugin_installed' => '旧 McpServer プラグインが組み込みの MCP と並んで再インストールされています。プラグインをアンインストールしないでください（アンインストールするとすべての MCP トークンが無効化されます）。次のコマンドで無効化してから: php artisan gp247:ext-disable --type=plugin --key=McpServer、ファイルマネージャーで app/GP247/Plugins/McpServer フォルダーを削除してください。',
     'password_revoke_note' => 'パスワードを変更すると、このアカウントのすべての MCP トークンが取り消されます。変更後は新しいトークンを作成し、エージェントに設定し直してください。',
 
     'list_title' => 'トークン',

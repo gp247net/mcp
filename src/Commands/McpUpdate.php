@@ -63,8 +63,12 @@ class McpUpdate extends GP247Command
         }
 
         $this->info('- MCP data ready (gp247/mcp ' . McpServiceProvider::VERSION . ')');
-        if (McpServiceProvider::legacyPluginFolderPresent()) {
+        $cleanup = McpServiceProvider::legacyPluginCleanup();
+        if ($cleanup === 'purge') {
             $this->addWarning('The McpServer plugin folder is still present; remove it with: php artisan gp247:ext-uninstall --type=plugin --key=McpServer --purge');
+        } elseif ($cleanup === 'disable') {
+            // WHY not ext-uninstall: the plugin is registered again, and its uninstall() revokes every MCP token.
+            $this->addWarning('The old McpServer plugin is installed again. Do not uninstall it (that revokes every MCP token): run php artisan gp247:ext-disable --type=plugin --key=McpServer, then delete app/GP247/Plugins/McpServer by hand.');
         }
         if ($this->laravel->routesAreCached()) {
             // WHY: cached routes may still point at the old plugin; gp247:update rebuilds them, a lone run does not.

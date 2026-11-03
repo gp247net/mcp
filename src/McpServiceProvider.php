@@ -24,7 +24,7 @@ use Illuminate\Support\ServiceProvider;
 class McpServiceProvider extends ServiceProvider
 {
     /** Single source of the package version (MCP server info + installed-data marker). */
-    public const VERSION = '2.0.0';
+    public const VERSION = '2.0.1';
 
     /** Key of the McpServer plugin this package replaces. */
     public const LEGACY_PLUGIN_KEY = 'McpServer';
@@ -102,6 +102,32 @@ class McpServiceProvider extends ServiceProvider
         } catch (\Throwable $e) {
             return true;
         }
+    }
+
+    /**
+     * Whether the McpServer plugin is registered as installed (its row exists, active or not).
+     * Uninstalling a registered plugin runs its own uninstall(), which revokes every MCP token.
+     */
+    public static function legacyPluginInstalled(): bool
+    {
+        return function_exists('gp247_extension_check_installed')
+            && gp247_extension_check_installed('Plugins', self::LEGACY_PLUGIN_KEY);
+    }
+
+    /**
+     * Safe way to remove a leftover McpServer plugin folder, or null when there is nothing to do:
+     * "purge" when the plugin is no longer registered (gp247:ext-uninstall --purge only deletes
+     * files), "disable" when it was installed again (uninstalling it would revoke MCP tokens).
+     *
+     * @aidlc-story US-plugin-mcp-server-plugin-migration
+     */
+    public static function legacyPluginCleanup(): ?string
+    {
+        if (!self::legacyPluginFolderPresent() || self::legacyPluginServes()) {
+            return null;
+        }
+
+        return self::legacyPluginInstalled() ? 'disable' : 'purge';
     }
 
     /**
