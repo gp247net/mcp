@@ -1,0 +1,33 @@
+{
+  "name": "gp247/mcp",
+  "description": "MCP server for GP247 / S-Cart: let the site owner's AI agents (Claude, Cursor, VS Code…) work with the shop under the same admin permissions",
+  "keywords": ["gp247", "s-cart", "mcp", "model context protocol", "ai agent", "laravel"],
+  "homepage": "https://gp247.net",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "GP247",
+      "email": "support@gp247.net"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "gp247/core": "^3.9",
+    "gp247/shop": "^3.7",
+    "laravel/mcp": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "GP247\\Mcp\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "GP247\\Mcp\\McpServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
