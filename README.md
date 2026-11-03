@@ -97,7 +97,7 @@ The shop owner switches **each tool** on or off for the whole site in **MCP Serv
 1. Back up the database. Open a **Terminal** in the root folder of your site (the folder containing the `artisan` file) and run:
 
    ```
-   composer require gp247/mcp
+   composer require gp247/mcp -W
    php artisan gp247:update
    ```
 
@@ -382,7 +382,7 @@ confirm. A well-behaved agent asks you between the two; give write tokens only t
 
 **Q10: My hosting has no SSH/Composer — how do I install?**
 
-→ S-Cart 3.5 and later already include MCP. Older site: on a computer with the site's source code, run `composer require gp247/mcp`,
+→ S-Cart 3.5 and later already include MCP. Older site: on a computer with the site's source code, run `composer require gp247/mcp -W`,
 upload the `vendor/` folder (plus `composer.json` and `composer.lock`) to your hosting, then run `php artisan gp247:update` (or ask your host to).
 
 ---

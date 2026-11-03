@@ -97,7 +97,7 @@ Chủ cửa hàng bật/tắt **từng công cụ** cho cả site trong màn **C
 1. Sao lưu cơ sở dữ liệu. Mở **Terminal** tại thư mục gốc của site (thư mục có file `artisan`), chạy lần lượt:
 
    ```
-   composer require gp247/mcp
+   composer require gp247/mcp -W
    php artisan gp247:update
    ```
 
@@ -374,7 +374,7 @@ xác nhận. Agent đúng chuẩn sẽ hỏi bạn ở giữa hai bước; hãy 
 
 **Câu 10: Hosting của tôi không có SSH/Composer thì cài thế nào?**
 
-→ S-Cart 3.5 trở lên đã có sẵn MCP. Site cũ: trên máy tính có mã nguồn site, chạy `composer require gp247/mcp`, tải thư mục `vendor/`
+→ S-Cart 3.5 trở lên đã có sẵn MCP. Site cũ: trên máy tính có mã nguồn site, chạy `composer require gp247/mcp -W`, tải thư mục `vendor/`
 (và `composer.json`, `composer.lock`) lên hosting, rồi chạy `php artisan gp247:update` (hoặc nhờ nhà cung cấp hosting chạy).
 
 ---

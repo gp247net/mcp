@@ -92,7 +92,7 @@ sequenceDiagram
 1. データベースをバックアップします。サイトのルートフォルダー（`artisan` ファイルがあるフォルダー）で **Terminal** を開き、順に実行します：
 
    ```
-   composer require gp247/mcp
+   composer require gp247/mcp -W
    php artisan gp247:update
    ```
 
@@ -340,7 +340,7 @@ RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 **質問 10：ホスティングに SSH/Composer がない場合、どうやってインストールする？**
 
-→ S-Cart 3.5 以上には MCP が同梱されています。古いサイトの場合：サイトのソースコードがあるパソコンで `composer require gp247/mcp` を実行し、`vendor/` フォルダー（および `composer.json`、`composer.lock`）をホスティングにアップロードしてから、`php artisan gp247:update` を実行してください（またはホスティング会社に依頼してください）。
+→ S-Cart 3.5 以上には MCP が同梱されています。古いサイトの場合：サイトのソースコードがあるパソコンで `composer require gp247/mcp -W` を実行し、`vendor/` フォルダー（および `composer.json`、`composer.lock`）をホスティングにアップロードしてから、`php artisan gp247:update` を実行してください（またはホスティング会社に依頼してください）。
 
 ---
 
