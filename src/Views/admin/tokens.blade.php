@@ -36,8 +36,8 @@
     <div class="flex flex-wrap items-start justify-between gap-4">
         <p class="max-w-3xl text-sm text-gray-500 dark:text-gray-400">{{ gp247_language_render($l.'subtitle') }}</p>
         @if ($settingsUrl)
-            <x-gp247::button variant="secondary" size="sm" :href="$settingsUrl" data-testid="plugin-mcp-server-settings-link">
-                <i class="fas fa-gear"></i> {{ gp247_language_render($l.'settings_heading') }}
+            <x-gp247::button :href="$settingsUrl" data-testid="plugin-mcp-server-settings-link">
+                <i class="fas fa-cog"></i> {{ gp247_language_render($l.'settings_heading') }}
             </x-gp247::button>
         @endif
     </div>
@@ -55,6 +55,11 @@
     @unless ($endpointEnabled)
         <x-gp247::alert type="warning" data-testid="plugin-mcp-server-endpoint-disabled">
             {{ gp247_language_render($l.'endpoint_disabled') }}
+            @if ($settingsUrl)
+                <a href="{{ $settingsUrl }}" class="font-semibold underline whitespace-nowrap" data-testid="plugin-mcp-server-endpoint-disabled-settings-link">
+                    <i class="fas fa-cog"></i> {{ gp247_language_render($l.'settings_heading') }}
+                </a>
+            @endif
         </x-gp247::alert>
     @endunless
 
@@ -69,7 +74,7 @@
             icon="fas fa-hourglass-half" color="amber" data-testid="plugin-mcp-server-stat-expiring" />
         <x-gp247::stat-card :label="gp247_language_render($l.'stat_tools')"
             :value="gp247_language_render($l.'stat_tools_value', ['read' => $stats['readTools'], 'write' => $stats['writeTools']])"
-            icon="fas fa-screwdriver-wrench" color="emerald" data-testid="plugin-mcp-server-stat-tools" />
+            icon="fas fa-tools" color="emerald" data-testid="plugin-mcp-server-stat-tools" />
     </div>
 
     {{-- Freshly created token: shown once --}}
@@ -99,7 +104,7 @@
                 <div>
                     <span class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">{{ gp247_language_render($l.'token_level') }}</span>
                     <div class="grid grid-cols-2 gap-3" data-testid="plugin-mcp-server-token-level">
-                        @foreach (['read' => 'fas fa-eye', 'write' => 'fas fa-pen-to-square'] as $option => $icon)
+                        @foreach (['read' => 'fas fa-eye', 'write' => 'fas fa-edit'] as $option => $icon)
                             @php($disabled = $option === 'write' && !$canWrite)
                             <label @class([
                                 'flex cursor-pointer flex-col gap-1 rounded-lg border p-3 transition',
