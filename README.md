@@ -4,6 +4,14 @@
 
 # MCP Server — Connect AI agents to your GP247 / S-Cart shop
 
+```bash
+composer require gp247/mcp -W
+php artisan gp247:update
+```
+
+S-Cart 3.5 and later already include MCP — no need to run the commands above. Next: turn MCP on, create a token and connect your agent
+(see [Installation](#installation) for hosting without SSH and for sites on the old McpServer plugin).
+
 ## Introduction
 This document explains how to use **MCP Server** — built into S-Cart (package `gp247/mcp`, open source) — to connect the AI agent you already use (Claude Code,
 Claude Desktop, Cursor, VS Code…) to your S-Cart shop. It is written for shop owners and admin staff, including non-technical
