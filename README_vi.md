@@ -2,6 +2,8 @@
 >
 > 💻 **GitHub (mã nguồn):** [github.com/gp247net/mcp](https://github.com/gp247net/mcp)
 
+[![M8ven Score](https://m8ven.ai/badge/mcp/gp247net/mcp)](https://m8ven.ai/mcp/gp247net/mcp?s=readme)
+
 # MCP Server — Kết nối AI agent với cửa hàng GP247 / S-Cart
 
 ```bash
