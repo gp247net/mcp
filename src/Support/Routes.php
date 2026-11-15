@@ -29,6 +29,12 @@ final class Routes
     public const PROBE = 'api/core/mcp-probe';
 
     /**
+     * Origin check laravel/mcp attaches to the routes of Mcp::web() since 1.2.0. Named as a
+     * string so nothing is loaded and removing it is a no-op on 1.0 / 1.1, where it does not exist.
+     */
+    public const LIBRARY_ORIGIN_CHECK = 'Laravel\\Mcp\\Server\\Middleware\\ValidateOrigin';
+
+    /**
      * Register every route of MCP.
      */
     public static function register(): void
@@ -47,13 +53,20 @@ final class Routes
             // WHY: the CheckIP plugin protects the admin and API groups; this bare route must get it too.
             array_unshift($middleware, 'check_ip');
         }
-        Mcp::web(self::ENDPOINT, GP247Server::class)->middleware($middleware)->name('gp247_mcp.endpoint');
+        // WHY without the library's origin check: McpEndpointGate is the only place that decides the
+        // Origin — it knows the origins the owner allowed, answers with the GP247 envelope and, unlike
+        // the library, never lets every localhost origin through. Running both, the library refused
+        // the owner's extra origins before the gate saw them (laravel/mcp 1.2.0).
+        Mcp::web(self::ENDPOINT, GP247Server::class)
+            ->middleware($middleware)
+            ->withoutMiddleware(self::LIBRARY_ORIGIN_CHECK)
+            ->name('gp247_mcp.endpoint');
 
         // WHY: laravel/mcp also adds GET/DELETE (405) on the same URI; gate them so a disabled
         // endpoint answers 404 there too and does not reveal that MCP is present.
         foreach (['GET', 'HEAD', 'DELETE'] as $method) {
             $route = Route::getRoutes()->getRoutesByMethod()[$method][self::ENDPOINT] ?? null;
-            $route?->middleware(McpEndpointGate::class);
+            $route?->middleware(McpEndpointGate::class)->withoutMiddleware(self::LIBRARY_ORIGIN_CHECK);
         }
 
         Route::get(self::PROBE, ProbeController::class)->middleware('throttle:30,1')->name('gp247_mcp.probe');
