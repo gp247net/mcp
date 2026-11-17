@@ -83,6 +83,9 @@ return [
         'tool_update_shipping_status' => 'update_shipping_status — 配送ステータスの変更',
         'tool_add_order_note' => 'add_order_note — 注文メモの追加',
         'tool_adjust_stock' => 'adjust_stock — 在庫の入庫 / 出庫',
+        'tool_seo_audit' => 'seo_audit — SEOチェック結果',
+        'tool_get_seo' => 'get_seo — コンテンツのSEO',
+        'tool_update_seo' => 'update_seo — コンテンツのSEOを編集',
     ],
 
     'error_denied' => '許可されていません。',
@@ -93,6 +96,8 @@ return [
     'error_range_too_long' => '期間が :days 日を超えています。',
     'error_bad_status' => '不明な注文ステータス :status です。',
     'error_confirm_code' => 'confirm_code が無効か期限切れです。confirm_code なしで再度呼び出して新しいプレビューを取得してください。',
+    'error_seo_type' => '対応していないコンテンツ種別です（product, category, brand, page）。',
+    'error_seo_lang' => '言語「:lang」はストアで有効ではありません。',
     'error_bad_shipping_status' => '配送ステータス :status は存在しません。',
     'error_stock_negative' => '在庫をマイナスにはできません (現在 :stock、変更 :delta)。',
     'error_stock_changed' => '在庫が直前に変わり、この変更で在庫がマイナスになるため、何も書き込みませんでした。',

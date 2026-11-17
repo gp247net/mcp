@@ -15,6 +15,9 @@ use GP247\Mcp\Mcp\Tools\StoreInfoTool;
 use GP247\Mcp\Mcp\Tools\UpdateOrderStatusTool;
 use GP247\Mcp\Mcp\Tools\AddOrderNoteTool;
 use GP247\Mcp\Mcp\Tools\AdjustStockTool;
+use GP247\Mcp\Mcp\Tools\GetSeoTool;
+use GP247\Mcp\Mcp\Tools\SeoAuditTool;
+use GP247\Mcp\Mcp\Tools\UpdateSeoTool;
 use GP247\Mcp\Mcp\Tools\RecentChangesTool;
 use GP247\Mcp\Mcp\Tools\UpdateShippingStatusTool;
 use GP247\Mcp\McpServiceProvider;
@@ -51,5 +54,9 @@ class GP247Server extends Server
         UpdateShippingStatusTool::class,
         AddOrderNoteTool::class,
         AdjustStockTool::class,
+        // 2.1.0 (SEO phase 3, mod 20261117T183408): hidden when gp247/front has no SEO classes.
+        SeoAuditTool::class,
+        GetSeoTool::class,
+        UpdateSeoTool::class,
     ];
 }

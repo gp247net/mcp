@@ -48,6 +48,11 @@ final class ToolCatalog
             new ToolDefinition('update_shipping_status', ToolDefinition::WRITE, 'order/detail/{id}', false, [ShopOrder::class . '::changeShippingStatus']),
             new ToolDefinition('add_order_note', ToolDefinition::WRITE, 'order/detail/{id}', false, [ShopOrder::class . '::addNote']),
             new ToolDefinition('adjust_stock', ToolDefinition::WRITE, 'product', false, [ShopProduct::class . '::adjustStock']),
+            // 2.1.0 (SEO phase 3, mod 20261117T183408): gp247/front SEO seams; `update_seo` also checks the
+            // write right of the content's own screen in its handler (ADR-plugin-mcp-server-write-tool-policy).
+            new ToolDefinition('seo_audit', $read, 'seo_audit', true, ['GP247\Front\Library\SeoAudit::run']),
+            new ToolDefinition('get_seo', $read, 'seo_audit', true, ['GP247\Front\Library\SeoContentMeta::formState']),
+            new ToolDefinition('update_seo', ToolDefinition::WRITE, 'seo_audit', false, ['GP247\Front\Library\SeoContentMeta::formState', 'GP247\Front\Library\SeoContentMeta::save']),
         ];
 
         $map = [];

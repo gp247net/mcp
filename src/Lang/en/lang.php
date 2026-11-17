@@ -83,6 +83,9 @@ return [
         'tool_update_shipping_status' => 'update_shipping_status — change shipping status',
         'tool_add_order_note' => 'add_order_note — add an order note',
         'tool_adjust_stock' => 'adjust_stock — receive / issue stock',
+        'tool_seo_audit' => 'seo_audit — SEO check result',
+        'tool_get_seo' => 'get_seo — SEO of one piece of content',
+        'tool_update_seo' => 'update_seo — edit the SEO of one piece of content',
     ],
 
     'error_denied' => 'Not allowed.',
@@ -93,6 +96,8 @@ return [
     'error_range_too_long' => 'The date range is longer than :days days.',
     'error_bad_status' => 'Unknown order status :status.',
     'error_confirm_code' => 'Invalid or expired confirm_code. Call again without confirm_code to get a new preview.',
+    'error_seo_type' => 'Unsupported content type (product, category, brand, page).',
+    'error_seo_lang' => 'Language ":lang" is not active on the store.',
     'error_bad_shipping_status' => 'Unknown shipping status :status.',
     'error_stock_negative' => 'Stock cannot go below zero (current :stock, change :delta).',
     'error_stock_changed' => 'The stock changed meanwhile and this change would make it negative; nothing was written.',

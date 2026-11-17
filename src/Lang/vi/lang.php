@@ -83,6 +83,9 @@ return [
         'tool_update_shipping_status' => 'update_shipping_status — đổi trạng thái giao hàng',
         'tool_add_order_note' => 'add_order_note — thêm ghi chú đơn',
         'tool_adjust_stock' => 'adjust_stock — nhập / xuất tồn kho',
+        'tool_seo_audit' => 'seo_audit — kết quả kiểm tra SEO',
+        'tool_get_seo' => 'get_seo — SEO của một nội dung',
+        'tool_update_seo' => 'update_seo — sửa SEO của một nội dung',
     ],
 
     'error_denied' => 'Không có quyền.',
@@ -93,6 +96,8 @@ return [
     'error_range_too_long' => 'Khoảng ngày dài hơn :days ngày.',
     'error_bad_status' => 'Trạng thái đơn :status không tồn tại.',
     'error_confirm_code' => 'confirm_code không hợp lệ hoặc đã hết hạn. Gọi lại không kèm confirm_code để lấy bản xem trước mới.',
+    'error_seo_type' => 'Loại nội dung không hỗ trợ (product, category, brand, page).',
+    'error_seo_lang' => 'Ngôn ngữ ":lang" không bật trên cửa hàng.',
     'error_bad_shipping_status' => 'Không có trạng thái giao hàng :status.',
     'error_stock_negative' => 'Tồn kho không thể âm (hiện có :stock, thay đổi :delta).',
     'error_stock_changed' => 'Tồn kho vừa thay đổi và thao tác này sẽ làm tồn âm; chưa ghi gì.',
