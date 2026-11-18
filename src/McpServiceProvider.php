@@ -23,7 +23,7 @@ use Illuminate\Support\ServiceProvider;
 class McpServiceProvider extends ServiceProvider
 {
     /** Single source of the package version (MCP server info + installed-data marker). */
-    public const VERSION = '2.1.0';
+    public const VERSION = '2.1.1';
 
     /** Key of the McpServer plugin this package replaces. */
     public const LEGACY_PLUGIN_KEY = 'McpServer';
