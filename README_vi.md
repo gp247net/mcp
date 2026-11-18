@@ -321,7 +321,7 @@ MIT — như S-Cart.
 - **Trạng thái không tồn tại bị từ chối**; **đơn đã chốt (Hoàn tất / Đã hoàn tiền / Đã huỷ) vẫn đổi được như trên trang quản trị**,
   bản xem trước có ghi chú để bạn cân nhắc.
 - **Mở lại đơn đã huỷ bị chặn nếu không đủ tồn kho** — giống trang quản trị, để không bán thứ không còn trong kho.
-- **Khi demo chỉ-đọc (SandboxDemo) đang bật, mọi thao tác ghi qua MCP bị chặn.**
+- **Khi chế độ demo SandboxDemo đang bật, MCP không ghi được gì.** Từ SandboxDemo 2.1, endpoint MCP đóng hẳn (kể cả đọc); bản cũ hơn chặn mọi thao tác ghi.
 
 **Các công cụ ghi khác**
 - **Mỗi công cụ ghi bật riêng** trong cấu hình MCP Server — không có công tắc bật tất cả.
@@ -390,4 +390,4 @@ xác nhận. Agent đúng chuẩn sẽ hỏi bạn ở giữa hai bước; hãy 
 
 ---
 
-<sub>📅 **Cập nhật lần cuối:** 2026-11-03 · ✍️ **Tác giả (Author):** GP247</sub>
+<sub>📅 **Cập nhật lần cuối:** 2026-11-18 · ✍️ **Tác giả (Author):** GP247</sub>

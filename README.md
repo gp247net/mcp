@@ -329,7 +329,7 @@ MIT — same as S-Cart.
 - **Unknown statuses are refused**; **finalised orders (Done / Refunded / Canceled) can still be changed, as in the admin panel**, and
   the preview flags them so you can think twice.
 - **Reopening a canceled order is blocked when stock is insufficient** — same as the admin panel, so you never sell what is no longer in stock.
-- **While the read-only demo mode (SandboxDemo) is on, every write through MCP is blocked.**
+- **While SandboxDemo's demo mode is on, MCP cannot change anything.** From SandboxDemo 2.1 the MCP endpoint is closed entirely (reads included); older versions block every write.
 
 **Other write tools**
 - **Each write tool is switched on separately** in MCP Server settings — there is no switch that turns them all on.
@@ -398,4 +398,4 @@ upload the `vendor/` folder (plus `composer.json` and `composer.lock`) to your h
 
 ---
 
-<sub>📅 **Last updated:** 2026-11-03 · ✍️ **Author:** GP247</sub>
+<sub>📅 **Last updated:** 2026-11-18 · ✍️ **Author:** GP247</sub>

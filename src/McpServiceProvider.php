@@ -6,7 +6,6 @@ use GP247\Mcp\Commands\McpInstall;
 use GP247\Mcp\Commands\McpUninstall;
 use GP247\Mcp\Commands\McpUpdate;
 use GP247\Mcp\Install\Installer;
-use GP247\Mcp\Support\Integrations;
 use GP247\Mcp\Support\Routes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
@@ -50,14 +49,13 @@ class McpServiceProvider extends ServiceProvider
         }
 
         // WHY booted(): the core loads its helpers and the plugin providers during its own boot;
-        // SandboxDemo's config and the CheckIP middleware alias exist only after that.
+        // the CheckIP middleware alias exists only after that.
         $this->app->booted(function (): void {
             // One URL, one owner: until gp247:mcp-update moves the plugin's data, the old
             // plugin keeps serving api/core/mcp with its own limiter (US-plugin-mcp-server-plugin-migration).
             if (self::legacyPluginServes()) {
                 return;
             }
-            Integrations::register();
             Routes::registerRateLimiters();
 
             if ($this->app->routesAreCached() || !class_exists(\Laravel\Mcp\Server::class)) {

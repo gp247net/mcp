@@ -19,7 +19,8 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Post-authentication guard of the MCP endpoint: token must be an MCP token, the account active
  * and allowed to use MCP (L1), the store scope resolvable (L4). Then the admin guard is given the
- * token owner so RBAC, SandboxDemo and audit see the same actor as on the admin screens.
+ * token owner so RBAC and audit (and SandboxDemo 2.0.x, which keys on the admin guard) see the same
+ * actor as on the admin screens.
  *
  * @aidlc-unit plugin-mcp-server
  * @aidlc-story US-plugin-mcp-server-rbac-tools
