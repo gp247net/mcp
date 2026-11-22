@@ -5,7 +5,7 @@
 [![M8ven Score](https://m8ven.ai/badge/mcp/gp247net-mcp-wvhls1?v=3cc0afee38927cc848b119ce55ba9299)](https://m8ven.ai/mcp/gp247net-mcp-wvhls1?s=readme)
 
 
-# MCP Server — Connect AI agents to your GP247 / S-Cart shop
+# MCP Server — Connect AI agents to your S-Cart shop
 
 ```bash
 composer require gp247/mcp -W

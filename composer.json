@@ -1,6 +1,6 @@
 {
   "name": "gp247/mcp",
-  "description": "MCP server for GP247 / S-Cart: let the site owner's AI agents (Claude, Cursor, VS Code…) work with the shop under the same admin permissions",
+  "description": "MCP server for S-Cart: let the site owner's AI agents (Claude, Cursor, VS Code…) work with the shop under the same admin permissions",
   "keywords": ["gp247", "s-cart", "mcp", "model context protocol", "ai agent", "laravel"],
   "homepage": "https://gp247.net",
   "license": "MIT",
