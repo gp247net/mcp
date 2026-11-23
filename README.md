@@ -292,6 +292,27 @@ of the store you manage** — you then see only that store's data.
 - **Remove completely** (rarely needed — a disabled MCP costs nothing): run `php artisan gp247:mcp-uninstall` — removes the settings, menu and
   permissions and **revokes every MCP token**; other API tokens are untouched. You can then `composer remove gp247/mcp`.
 
+## Running the tests
+
+The `gp247/mcp` test suite lives in the `tests/` folder of this repository and runs automatically on GitHub Actions for
+every change (PHP 8.3 / 8.4 × MySQL / MariaDB). The tests are not part of the Composer package; to run them yourself:
+
+1. Clone this repository.
+2. Create a blank Laravel application and install `gp247/core` 3.18.0 or later, `gp247/front` 3.14.1 or later, `gp247/shop`
+   and `gp247/mcp` **from your clone** (the test base classes and shared helpers ship in `GP247\Core\Testing` and
+   `GP247\Front\Testing`). The tests check the copy installed in the application's `vendor/`, so point Composer at the clone
+   first: `composer config repositories.mcp '{"type": "path", "url": "/path/to/mcp", "options": {"symlink": false}}'`, then
+   `composer require "gp247/core:^3.18" "gp247/front:^3.14.1" "gp247/shop:^3.14" "gp247/mcp:*@dev"`. Register
+   `GP247\Front\FrontServiceProvider` and `GP247\Shop\ShopServiceProvider` in `bootstrap/providers.php` (`gp247/mcp` registers
+   itself) and run `php artisan gp247:install`. Use a database **reserved for tests** — its name must end with `_test` or
+   `_testing`. The suite refuses any other database so it never touches real data; to use another name, confirm it with
+   `GP247_TEST_DATABASE=<database name>`.
+3. From the application's root run:
+
+   ```bash
+   GP247_HOST_APP="$PWD" vendor/bin/phpunit -c /path/to/mcp/phpunit.xml.dist
+   ```
+
 ## License
 MIT — same as S-Cart.
 

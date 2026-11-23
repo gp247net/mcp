@@ -1,0 +1,4 @@
+# Kept out of the Composer package: the test suite and CI run from a clone of this repository.
+/.github export-ignore
+/tests export-ignore
+/phpunit.xml.dist export-ignore

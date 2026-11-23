@@ -263,6 +263,28 @@ sequenceDiagram
 - MCP を**無効化**するには、設定で **MCPエンドポイントをオンにする** をオフにします。トークンは保持され、再度オンにするまでエンドポイントは 404 を返します。
 - **完全に削除**する場合（通常は不要 — 無効な MCP は負荷になりません）：`php artisan gp247:mcp-uninstall` を実行すると、設定、メニュー、権限が削除され、**すべての MCP トークンが取り消されます**。その他の API トークンには影響しません。その後 `composer remove gp247/mcp` を実行できます。
 
+## テストの実行
+
+`gp247/mcp` のテストはこのリポジトリの `tests/` フォルダーにあり、変更のたびに GitHub Actions で自動実行されます
+（PHP 8.3 / 8.4 × MySQL / MariaDB）。テストは Composer パッケージに含まれないため、自分で実行する手順は次のとおりです。
+
+1. このリポジトリをクローンします。
+2. 空の Laravel アプリケーションを作成し、`gp247/core` 3.18.0 以降、`gp247/front` 3.14.1 以降、`gp247/shop`、そして
+   `gp247/mcp` を**クローンから**インストールします（テストの基底クラスと共通ヘルパーは `GP247\Core\Testing`、
+   `GP247\Front\Testing` にあります）。テストはアプリケーションの `vendor/` にインストールされたコピーを検証するため、先に
+   Composer をクローンに向けます：
+   `composer config repositories.mcp '{"type": "path", "url": "/path/to/mcp", "options": {"symlink": false}}'`、続けて
+   `composer require "gp247/core:^3.18" "gp247/front:^3.14.1" "gp247/shop:^3.14" "gp247/mcp:*@dev"`。`bootstrap/providers.php` に
+   `GP247\Front\FrontServiceProvider` と `GP247\Shop\ShopServiceProvider` を登録し（`gp247/mcp` は自動で登録されます）、
+   `php artisan gp247:install` を実行します。データベースは**テスト専用**のもの（名前が `_test` または `_testing` で終わるもの）を
+   使ってください。実データに触れないよう、それ以外のデータベースではテストは実行を拒否します。別の名前を使う場合は
+   `GP247_TEST_DATABASE=<データベース名>` で明示してください。
+3. アプリケーションのルートで次を実行します。
+
+   ```bash
+   GP247_HOST_APP="$PWD" vendor/bin/phpunit -c /path/to/mcp/phpunit.xml.dist
+   ```
+
 ## ライセンス
 MIT — S-Cart と同じです。
 
