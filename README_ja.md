@@ -2,7 +2,7 @@
 >
 > 💻 **GitHub（ソースコード）:** [github.com/gp247net/mcp](https://github.com/gp247net/mcp)
 
-[![M8ven Score](https://m8ven.ai/badge/mcp/gp247net-mcp-wvhls1?v=3cc0afee38927cc848b119ce55ba9299)](https://m8ven.ai/mcp/gp247net-mcp-wvhls1?s=readme)
+[![Tests](https://github.com/gp247net/mcp/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/gp247net/mcp/actions/workflows/tests.yml) [![M8ven Score](https://m8ven.ai/badge/mcp/gp247net-mcp-wvhls1?v=3cc0afee38927cc848b119ce55ba9299)](https://m8ven.ai/mcp/gp247net-mcp-wvhls1?s=readme)
 
 
 # MCP Server — AIエージェントを S-Cart ショップに接続する
